@@ -58,11 +58,17 @@ mongoose
     console.log("Updated info:", updated);
 
     // DELETE
+    //multiple methods .deleteMany({query})
+    // .findByIdAndDelete(id)
     const pr = Client.deleteOne({ name: "Maddox Leon" }); // this will return the status of this id, in this case since it has been deleted it will be a deleted status
     return pr;
   })
   .then((result) => {
     console.log("The status is:", result);
+    const pr = mongoose.connection.close();
+  })
+  .then((closed) => {
+    console.log("Connection has been closed");
   })
   .catch((err) => {
     console.log("There was an error:", err);
